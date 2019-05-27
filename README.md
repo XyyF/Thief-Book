@@ -4,6 +4,10 @@
 
 ![](./images/1.png)
 
+## 安装
+
+- https://marketplace.visualstudio.com/items?itemName=C-TEAM.thief-book
+
 ## 默认配置
 
 > 需要填写 TXT小说 路径才可以使用此插件
@@ -25,6 +29,10 @@
 ---
 
 A fishing and reading magic weapon
+
+## Install
+
+- https://marketplace.visualstudio.com/items?itemName=C-TEAM.thief-book
 
 ## Default configuration
 
