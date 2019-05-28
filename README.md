@@ -20,11 +20,11 @@
 
 > 没有设置TXT小说的本地绝对路径，会报错，会提示设置路径
 
-`cmd+m` 老板键 随机显示不同语言的 Hello World 
+`cmd+m` 老板键 。 随机显示不同语言的 Hello World ，随时可用
 
-`cmd+,` 上一页
+`cmd+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
 
-`cmd+.` 下一页
+`cmd+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
 
 ---
 
@@ -46,10 +46,10 @@ A fishing and reading magic weapon
 
 > If there is no absolute local path for TXT fiction, errors will be reported and paths will be prompted.
 
-`cmd+m` Boss key randomly displays Hello World in different languages
+`cmd+m` Boss key. randomly displays Hello World in different languages , Available at any time
 
-`cmd+,` Previous page
+`cmd+,` Previous page. When text is focused (editing code) , Only then can it be used
 
-`cmd+.` next page
+`cmd+.` next page . When text is focused (editing code) , Only then can it be used
 
 **Enjoy!**
