@@ -1,9 +1,25 @@
 # Change Log
 
-All notable changes to the "thief-book" extension will be documented in this file.
+**0.0.6**
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- 修复翻页问题
 
-## [Unreleased]
+**0.0.5**
 
-- Initial release
+- 修复WIN平台使用问题
+
+**0.0.4**
+
+- 修改说明文档
+
+**0.0.3**
+
+- 修改说明文档
+
+**0.0.2**
+
+- 修改图片路径
+
+**0.0.1**
+
+- 发布第一版

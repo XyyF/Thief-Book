@@ -2,7 +2,7 @@ import { ExtensionContext, workspace, window } from 'vscode';
 import * as fs from "fs";
 
 export class Book {
-    curr_page_number: number | undefined = 1;
+    curr_page_number: number = 1;
     page_size: number | undefined = 50;
     page = 0;
     start = 0;
@@ -24,35 +24,53 @@ export class Book {
         console.log(file_name);
     }
 
-    getPage() {
-        this.curr_page_number = workspace.getConfiguration().get('thiefBook.currPageNumber');
-        // this.curr_page_number = this.extensionContext.globalState.get("book_page_number", 1);
-    }
+    getPage(type: string) {
 
-    updatePage(type: string) {
+        var curr_page = <number>workspace.getConfiguration().get('thiefBook.currPageNumber');
         var page = 0;
 
         if (type === "previous") {
-            if (this.curr_page_number! <= 1) {
+            if (curr_page! <= 1) {
                 page = 1;
             } else {
-                page = this.curr_page_number! - 1;
+                page = curr_page - 1;
             }
         } else if (type === "next") {
-            if (this.curr_page_number! >= this.page) {
+            if (curr_page! >= this.page) {
                 page = this.page;
             } else {
-                page = this.curr_page_number! + 1;
+                page = curr_page + 1;
             }
         }
 
-        workspace.getConfiguration().update('thiefBook.currPageNumber', page, true);
+        this.curr_page_number = page;
+        // this.curr_page_number = this.extensionContext.globalState.get("book_page_number", 1);
+    }
+
+    updatePage() {
+        // var page = 0;
+
+        // if (type === "previous") {
+        //     if (this.curr_page_number! <= 1) {
+        //         page = 1;
+        //     } else {
+        //         page = this.curr_page_number! - 1;
+        //     }
+        // } else if (type === "next") {
+        //     if (this.curr_page_number! >= this.page) {
+        //         page = this.page;
+        //     } else {
+        //         page = this.curr_page_number! + 1;
+        //     }
+        // }
+
+        workspace.getConfiguration().update('thiefBook.currPageNumber', this.curr_page_number, true);
         // this.extensionContext.globalState.update("book_page_number", page);
     }
 
     getStartEnd() {
-        this.start = this.curr_page_number! * this.page_size!;
-        this.end = this.curr_page_number! * this.page_size! - this.page_size!;
+        this.start = this.curr_page_number * this.page_size!;
+        this.end = this.curr_page_number * this.page_size! - this.page_size!;
     }
 
     readFile() {
@@ -76,12 +94,12 @@ export class Book {
         let text = this.readFile();
 
         this.getSize(text);
-        this.getPage();
+        this.getPage("previous");
         this.getStartEnd();
 
-        var page_info = this.curr_page_number!.toString() + "/" + this.page.toString();
+        var page_info = this.curr_page_number.toString() + "/" + this.page.toString();
 
-        this.updatePage("previous");
+        this.updatePage();
         return text.substring(this.start, this.end) + "    " + page_info;
     }
 
@@ -91,12 +109,12 @@ export class Book {
         let text = this.readFile();
 
         this.getSize(text);
-        this.getPage();
+        this.getPage("next");
         this.getStartEnd();
 
-        var page_info = this.curr_page_number!.toString() + "/" + this.page.toString();
+        var page_info = this.curr_page_number.toString() + "/" + this.page.toString();
 
-        this.updatePage("next");
+        this.updatePage();
 
         return text.substring(this.start, this.end) + "    " + page_info;
     }
