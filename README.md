@@ -16,15 +16,30 @@
 - 每页长度：50
 - TXT绝对路径：空
 
+## 路径格式
+
+- **Mac** or **Linux** : /opt/test/name.txt
+- **Win** : C:\\Users\\Administrator\\Desktop\\name.txt or C:/Users/Administrator/Desktop/name.txt
+
 ## 快捷键
 
 > 没有设置TXT小说的本地绝对路径，会报错，会提示设置路径
 
-`cmd+m` 老板键 。 随机显示不同语言的 Hello World ，随时可用
+**MAC**
 
-`cmd+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
+`Cmd+M` 老板键 。 随机显示不同语言的 Hello World ，随时可用
 
-`cmd+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
+`Cmd+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
+
+`Cmd+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
+
+**WIN**
+
+`Ctrl+M` 老板键 。 随机显示不同语言的 Hello World ，随时可用
+
+`Ctrl+Alt+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
+
+`Ctrl+Alt+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
 
 ---
 
@@ -42,14 +57,29 @@ A fishing and reading magic weapon
 - Length per page: 50
 - TXT Absolute Path: null
 
+## Path format
+
+- **Mac** or **Linux** : /opt/test/name.txt
+- **Win** ： C:\\Users\\Administrator\\Desktop\\name.txt or C:/Users/Administrator/Desktop/name.txt
+
 ## Shortcut keys
 
 > If there is no absolute local path for TXT fiction, errors will be reported and paths will be prompted.
 
-`cmd+m` Boss key. randomly displays Hello World in different languages , Available at any time
+**MAC**
 
-`cmd+,` Previous page. When text is focused (editing code) , Only then can it be used
+`Cmd+M` Boss key. randomly displays Hello World in different languages , Available at any time
 
-`cmd+.` next page . When text is focused (editing code) , Only then can it be used
+`Cmd+,` Previous page. When text is focused (editing code) , Only then can it be used
+
+`Cmd+.` Next page . When text is focused (editing code) , Only then can it be used
+
+**WIN**
+
+`Ctrl+M` Boss key. randomly displays Hello World in different languages , Available at any time
+
+`Ctrl+Alt+,` Previous page. When text is focused (editing code) , Only then can it be used
+
+`Ctrl+Alt+.` Next page . When text is focused (editing code) , Only then can it be used
 
 **Enjoy!**

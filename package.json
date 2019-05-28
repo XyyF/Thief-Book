@@ -61,13 +61,13 @@
 		"keybindings": [
 			{
 				"command": "extension.getPreviousPage",
-				"key": "ctrl+,",
+				"key": "ctrl+alt+,",
 				"mac": "cmd+,",
 				"when": "editorTextFocus"
 			},
 			{
 				"command": "extension.getNextPage",
-				"key": "ctrl+.",
+				"key": "ctrl+alt+.",
 				"mac": "cmd+.",
 				"when": "editorTextFocus"
 			},
