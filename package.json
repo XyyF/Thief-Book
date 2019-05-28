@@ -2,7 +2,7 @@
 	"name": "thief-book",
 	"displayName": "Thief-Book",
 	"description": "摸鱼看书神器 & Looking book tools",
-	"version": "0.0.2",
+	"version": "0.0.7",
 	"engines": {
 		"vscode": "^1.34.0"
 	},
@@ -101,3 +101,4 @@
 	},
 	"homepage": "https://github.com/cteams/Thief-Book/blob/master/README.md"
 }
+

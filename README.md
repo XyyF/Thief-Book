@@ -19,7 +19,7 @@
 ## 路径格式
 
 - **Mac** or **Linux** : /opt/test/name.txt
-- **Win** : C:\\Users\\Administrator\\Desktop\\name.txt or C:/Users/Administrator/Desktop/name.txt
+- **Win** : C:\\\Users\\\Administrator\\\Desktop\\\name.txt or C:/Users/Administrator/Desktop/name.txt
 
 ## 快捷键
 
@@ -60,7 +60,7 @@ A fishing and reading magic weapon
 ## Path format
 
 - **Mac** or **Linux** : /opt/test/name.txt
-- **Win** ： C:\\Users\\Administrator\\Desktop\\name.txt or C:/Users/Administrator/Desktop/name.txt
+- **Win** : C:\\\Users\\\Administrator\\\Desktop\\\name.txt or C:/Users/Administrator/Desktop/name.txt
 
 ## Shortcut keys
 
