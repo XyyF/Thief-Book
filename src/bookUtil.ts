@@ -41,6 +41,8 @@ export class Book {
             } else {
                 page = curr_page + 1;
             }
+        } else if (type === "curr") {
+            page = curr_page;
         }
 
         this.curr_page_number = page;
@@ -79,13 +81,21 @@ export class Book {
         }
 
         var data = fs.readFileSync(this.filePath!, 'utf-8');
-        var text = data.toString().replace(/\n/g, "").replace(/\r/g, "").replace(/　　/g, "").replace(/ /g, "");
-        return text;
+        
+        var line_break = <string>workspace.getConfiguration().get('thiefBook.lineBreak');
+
+        return data.toString().replace(/\n/g, line_break).replace(/\r/g, " ").replace(/　　/g, " ").replace(/ /g, " ");
     }
 
     init() {
         this.filePath = workspace.getConfiguration().get('thiefBook.filePath');
-        this.page_size = workspace.getConfiguration().get('thiefBook.pageSize');
+        var is_english = <boolean>workspace.getConfiguration().get('thiefBook.isEnglish');
+
+        if (is_english === true) {
+            this.page_size = <number>workspace.getConfiguration().get('thiefBook.pageSize') * 2;
+        } else {
+            this.page_size = workspace.getConfiguration().get('thiefBook.pageSize');
+        }
     }
 
     getPreviousPage() {
@@ -110,6 +120,22 @@ export class Book {
 
         this.getSize(text);
         this.getPage("next");
+        this.getStartEnd();
+
+        var page_info = this.curr_page_number.toString() + "/" + this.page.toString();
+
+        this.updatePage();
+
+        return text.substring(this.start, this.end) + "    " + page_info;
+    }
+
+    getJumpingPage() {
+        this.init();
+
+        let text = this.readFile();
+
+        this.getSize(text);
+        this.getPage("curr");
         this.getStartEnd();
 
         var page_info = this.curr_page_number.toString() + "/" + this.page.toString();

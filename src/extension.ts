@@ -15,6 +15,7 @@ export function activate(context: ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 
+	// 老板键
 	let displayCode = commands.registerCommand('extension.displayCode', () => {
 
 		let lauage_arr_list = [
@@ -34,19 +35,28 @@ export function activate(context: ExtensionContext) {
 		window.setStatusBarMessage(lauage_arr_list[index]);
 	});
 
+	// 下一页
 	let getNextPage = commands.registerCommand('extension.getNextPage', () => {
 		let books = new book.Book(context);
 		window.setStatusBarMessage(books.getNextPage());
 	});
 
+	// 上一页
 	let getPreviousPage = commands.registerCommand('extension.getPreviousPage', () => {
 		let books = new book.Book(context);
 		window.setStatusBarMessage(books.getPreviousPage());
 	});
 
+	// 跳转某个页面
+	let getJumpingPage = commands.registerCommand('extension.getJumpingPage', () => {
+		let books = new book.Book(context);
+		window.setStatusBarMessage(books.getJumpingPage());
+	});
+
 	context.subscriptions.push(displayCode);
 	context.subscriptions.push(getNextPage);
 	context.subscriptions.push(getPreviousPage);
+	context.subscriptions.push(getJumpingPage);
 }
 
 // this method is called when your extension is deactivated
