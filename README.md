@@ -10,6 +10,10 @@
 
 Thief-Book 为用户提供 Vscode 版本，具体请看 https://github.com/cteams/Thief-Book-VSCode
 
+# 下载地址
+
+https://github.com/cteams/Thief-Book/releases
+
 # 演示
 
 ## MAC
@@ -62,3 +66,4 @@ Thief-Book 为用户提供 Vscode 版本，具体请看 https://github.com/cteam
 - [ ] 多本小说管理
 - [ ] 在线小说下载
 - [ ] 股票支持
+
