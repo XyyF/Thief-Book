@@ -1,97 +1,64 @@
-# Thief Book
+# 介绍
 
-一个摸鱼看书神器
+**Thief-Book** 是一款真正的`摸鱼神器`，可以更加隐秘性大胆的看小说。
 
-![](./images/1.png)
+- **隐蔽性** 自定义透明背景，随意调整大下，完美融入各种软件界面
+- **快捷性** 三个快捷键，实现完美的摸鱼
+- **跨平台** 支持 Mac+Win，Linux 暂未测试，请自行打包
 
-## 安装
+# VScode
 
-- https://marketplace.visualstudio.com/items?itemName=C-TEAM.thief-book
+Thief-Book 为用户提供 Vscode 版本，具体请看 https://github.com/cteams/Thief-Book-VSCode
 
-## 默认配置
+# 演示
 
-> 需要填写 TXT小说 路径才可以使用此插件
+## MAC
 
-- 当前页数：1
-- 每页长度：50
-- 是否为英文：false 如果是英文小说，请勾选
-- 换行分隔符号：一个空格 
-- TXT绝对路径：空
+> MAC 支持 任务栏版 + 桌面版
 
-## 路径格式
+![mac](./images/mac.gif)
 
-- **Mac** or **Linux** : /opt/test/name.txt
-- **Win** : C:\\\Users\\\Administrator\\\Desktop\\\name.txt or C:/Users/Administrator/Desktop/name.txt
+## WIN
 
-## 快捷键
+> WIN 只有桌面版
 
-> 没有设置TXT小说的本地绝对路径，会报错，会提示设置路径
+![win](./images/win.gif)
 
-**MAC**
+# 快捷键
 
-`Cmd+M` 老板键 。 随机显示不同语言的 Hello World ，随时可用
+## MAC
 
-`Cmd+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
+<kbd>**Cmd+Option+M** </kbd> 老板键
 
-`Cmd+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
+<kbd>**Cmd+Option+,** </kbd>上一页
 
-`Cmd+;` 跳转 。 文本聚焦(编辑代码)的时候，需要设置跳转页面，才可以使用
+<kbd>**Cmd+Option+.**</kbd> 下一页 
 
-**WIN**
+## WIN
 
-`Ctrl+M` 老板键 。 随机显示不同语言的 Hello World ，随时可用
+<kbd>**Ctrl+Alt+M** </kbd> 老板键
 
-`Ctrl+Alt+,` 上一页 。 文本聚焦(编辑代码)的时候，才可以使用
+<kbd>**Ctrl+Alt+,** </kbd>上一页
 
-`Ctrl+Alt+.` 下一页 。 文本聚焦(编辑代码)的时候，才可以使用
+<kbd>**Ctrl+Alt+.** </kbd>下一页 
 
-`Ctrl+Alt+;` 跳转 。 文本聚焦(编辑代码)的时候，需要设置跳转页面，才可以使用
+# TODO
 
----
-
-A fishing and reading magic weapon
-
-## Install
-
-- https://marketplace.visualstudio.com/items?itemName=C-TEAM.thief-book
-
-## Default configuration
-
-> You need to fill in the TXT novel path to use this plug-in
-
-- Current Page: 1
-- Length per page: 50
-- Is English：false  If it's an English novel, please check it out.
-- Line Break Separation Symbol：A space
-- TXT Absolute Path: null
-
-## Path format
-
-- **Mac** or **Linux** : /opt/test/name.txt
-- **Win** : C:\\\Users\\\Administrator\\\Desktop\\\name.txt or C:/Users/Administrator/Desktop/name.txt
-
-## Shortcut keys
-
-> If there is no absolute local path for TXT fiction, errors will be reported and paths will be prompted.
-
-**MAC**
-
-`Cmd+M` Boss key. randomly displays Hello World in different languages , Available at any time
-
-`Cmd+,` Previous page. When text is focused (editing code) , Only then can it be used
-
-`Cmd+.` Next page . When text is focused (editing code) , Only then can it be used
-
-`Cmd+;` Jump page . When focusing on text (editing code), jump pages need to be set before you can use them
-
-**WIN**
-
-`Ctrl+M` Boss key. randomly displays Hello World in different languages , Available at any time
-
-`Ctrl+Alt+,` Previous page. When text is focused (editing code) , Only then can it be used
-
-`Ctrl+Alt+.` Next page . When text is focused (editing code) , Only then can it be used
-
-`Ctrl+Alt+;` Jump page . When focusing on text (editing code), jump pages need to be set before you can use them
-
-**Enjoy!**
+- [x] 任务栏版本
+- [x] 桌面版本
+- [x] 设置小说路径
+- [x] 设置当前页数
+- [x] 设置每页字数
+- [x] 老板键
+- [x] 上一页
+- [x] 下一页
+- [x] 英文小说支持
+- [x] 自定义换行符号
+- [x] 自定义桌面版背景
+- [x] 自定义桌面版字体颜色
+- [x] 跨平台兼容
+- [x] 桌面版随意拖动，随意调整大小
+- [x] 桌面版窗口永远顶置
+- [ ] 多本小说管理
+- [ ] 在线小说下载
+- [ ] 股票支持
