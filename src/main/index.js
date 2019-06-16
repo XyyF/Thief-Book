@@ -177,19 +177,19 @@ function Exit() {
 }
 
 function createKey() {
-  globalShortcut.register('CommandOrControl+Alt+,', function () {
+  globalShortcut.register('CommandOrControl+Left', function () {
     PreviousPage();
   })
 
-  globalShortcut.register('CommandOrControl+Alt+.', function () {
+  globalShortcut.register('CommandOrControl+Right', function () {
     NextPage();
   })
 
-  globalShortcut.register('CommandOrControl+Alt+M', function () {
+  globalShortcut.register('CommandOrControl+Up', function () {
     BossKey(2);
   })
 
-  globalShortcut.register('CommandOrControl+Alt+X', function () {
+  globalShortcut.register('CommandOrControl+Down', function () {
     Exit();
   })
 }
@@ -297,7 +297,7 @@ function createSetting() {
   if (isMac) {
     app.dock.hide();
   } else {
-    // 
+    //
   }
 }
 
