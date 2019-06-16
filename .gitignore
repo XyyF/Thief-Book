@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 */.DS_Store
+dist/electron/*.js
 
 # Logs
 logs
@@ -67,4 +68,3 @@ typings/
 # build
 build
 !build/icons
-dist/
