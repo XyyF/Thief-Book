@@ -63,3 +63,8 @@ typings/
 
 # next.js build output
 .next
+
+# build
+build
+!build/icons
+dist/
