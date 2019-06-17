@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, Tray, globalShortcut, ipcMain, shell } from 'electron'
+import {app, BrowserWindow, globalShortcut, ipcMain, ipcRenderer, Menu, shell, Tray} from 'electron'
 import db from './utils/db'
 import book from './utils/book'
 import osUtil from './utils/osUtil'
@@ -8,7 +8,7 @@ import osUtil from './utils/osUtil'
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
 let tray;
@@ -17,314 +17,283 @@ let desktopWindow;
 
 const isMac = 'darwin' === process.platform;
 const settingURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080/#/setting`
-  : `file://${__dirname}/index.html#setting`
+    ? `http://localhost:9080/#/setting`
+    : `file://${__dirname}/index.html#setting`
 
 const desktopURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080/#/desktop`
-  : `file://${__dirname}/index.html#desktop`
+    ? `http://localhost:9080/#/desktop`
+    : `file://${__dirname}/index.html#desktop`
 
 
 function init() {
-  createKey();
-  createTray();
+    createKey();
+    createTray();
 
-  if (isMac) {
-    createSetting();
+    if (isMac) {
+        createSetting();
 
-    if (db.get('curr_model') === '2') {
-      createWindownDesktop();
+        if (db.get('curr_model') === '2') {
+            createWindownDesktop();
 
-      setTimeout(() => {
-        BossKey(1);
-      }, 1000);
+            setTimeout(() => {
+                BossKey(1);
+            }, 1000);
+        }
+    } else {
+        createWindownDesktop();
+
+        setTimeout(() => {
+            BossKey(1);
+        }, 1000);
     }
-  } else {
-    createWindownDesktop();
-
-    setTimeout(() => {
-      BossKey(1);
-    }, 1000);
-  }
 }
 
 function createWindownSetting() {
-  /**
-   * Initial window options
-   */
+    /**
+     * Initial window options
+     */
 
-  settingWindow = new BrowserWindow({
-    title: '设 置',
-    useContentSize: true,
-    width: 411,
-    height: 325,
-    resizable: false,
-    maximizable: false,
-    minimizable: false,
-  })
+    settingWindow = new BrowserWindow({
+        title: '设 置',
+        useContentSize: true,
+        width: 411,
+        height: 325,
+        resizable: false,
+        maximizable: false,
+        minimizable: false,
+    })
 
-  let webContents = settingWindow.webContents;
-  webContents.on('did-finish-load', () => {
-    webContents.setZoomFactor(1);
-    webContents.setVisualZoomLevelLimits(1, 1);
-    webContents.setLayoutZoomLevelLimits(0, 0);
-  })
+    let webContents = settingWindow.webContents;
+    webContents.on('did-finish-load', () => {
+        webContents.setZoomFactor(1);
+        webContents.setVisualZoomLevelLimits(1, 1);
+        webContents.setLayoutZoomLevelLimits(0, 0);
+    })
 
-  settingWindow.loadURL(settingURL)
+    settingWindow.loadURL(settingURL)
 
-  settingWindow.on('closed', () => {
-    settingWindow = null
-  })
+    settingWindow.on('closed', () => {
+        settingWindow = null
+    })
 }
 
 function createWindownDesktop() {
-  /**
-   * Initial window options
-   */
-  const titleBarStyle = isMac ? 'hidden' : 'default';
+    /**
+     * Initial window options
+     */
+    const titleBarStyle = isMac ? 'hidden' : 'default';
 
-  desktopWindow = new BrowserWindow({
-    useContentSize: true,
-    width: 856,
-    height: 47,
-    resizable: true,
-    frame: false,
-    transparent: true,
-    // y: 600,
-    // x: 300
-  })
+    desktopWindow = new BrowserWindow({
+        useContentSize: true,
+        width: 856,
+        height: 47,
+        resizable: true,
+        frame: false,
+        transparent: true,
+        // y: 600,
+        // x: 300
+    })
 
-  let webContents = desktopWindow.webContents;
-  webContents.on('did-finish-load', () => {
-    webContents.setZoomFactor(1);
-    webContents.setVisualZoomLevelLimits(1, 1);
-    webContents.setLayoutZoomLevelLimits(0, 0);
-  })
+    let webContents = desktopWindow.webContents;
+    webContents.on('did-finish-load', () => {
+        webContents.setZoomFactor(1);
+        webContents.setVisualZoomLevelLimits(1, 1);
+        webContents.setLayoutZoomLevelLimits(0, 0);
+    })
 
-  desktopWindow.loadURL(desktopURL)
+    desktopWindow.loadURL(desktopURL)
 
-  desktopWindow.setAlwaysOnTop(true)
+    desktopWindow.setAlwaysOnTop(true)
 
-  desktopWindow.setSkipTaskbar(true);
+    desktopWindow.setSkipTaskbar(true);
 
-  desktopWindow.on('closed', () => {
-    desktopWindow = null
-  })
+    desktopWindow.on('closed', () => {
+        desktopWindow = null
+    })
 }
 
 
 function setText(text) {
-  global.text = {
-    text: text
-  }
+    global.text = {text}
 }
 
 function NextPage() {
-  let text = book.getNextPage();
+    let text = book.getNextPage();
 
-  if (db.get('curr_model') === '1') {
-    tray.setTitle(text);
-  } else if (db.get('curr_model') === '2') {
-    setText(text);
-    if (desktopWindow != null) {
-      desktopWindow.webContents.send('text', 'ping');
+    if (db.get('curr_model') === '1') {
+        tray.setTitle(text);
+    } else if (db.get('curr_model') === '2') {
+        setText(text);
+        desktopWindow && desktopWindow.webContents.send('text', 'ping');
     }
-  }
 }
 
 function PreviousPage() {
-  let text = book.getPreviousPage();
+    let text = book.getPreviousPage();
 
-  if (db.get('curr_model') === '1') {
-    tray.setTitle(text);
-  } else if (db.get('curr_model') === '2') {
-    setText(text);
-    if (desktopWindow != null) {
-      desktopWindow.webContents.send('text', 'ping');
+    if (db.get('curr_model') === '1') {
+        tray.setTitle(text);
+    } else if (db.get('curr_model') === '2') {
+        setText(text);
+        desktopWindow && desktopWindow.webContents.send('text', 'ping');
     }
-  }
 }
 
 function BossKey(type) {
-  let text = osUtil.getTime();
+    let text = osUtil.getTime();
 
-  if (db.get('curr_model') === '1') {
-    tray.setTitle(text);
-  }
-  if (db.get('curr_model') === '2') {
-    tray.setTitle("");
-    setText(text);
-
-    if (desktopWindow != null) {
-      if (type === 1) {
-        desktopWindow.webContents.send('text', 'boss');
-      } else if (type === 2) {
-        {
-          if (desktopWindow.isVisible()) {
-            desktopWindow.hide();
-          }
-          else {
-            desktopWindow.show();
-          }
-        }
-      }
+    if (db.get('curr_model') === '1') {
+        tray.setTitle(text);
     }
-  }
+    if (db.get('curr_model') === '2') {
+        tray.setTitle('');
+        setText(text);
+
+        if (desktopWindow != null) {
+            if (type === 1) {
+                desktopWindow.webContents.send('text', 'boss');
+            } else if (type === 2) {
+                {
+                    if (desktopWindow.isVisible()) {
+                        desktopWindow.hide();
+                    }
+                    else {
+                        desktopWindow.show();
+                    }
+                }
+            }
+        }
+    }
 }
 
 function Exit() {
-  app.quit();
+    app.quit();
 }
 
 function createKey() {
-  globalShortcut.register('CommandOrControl+Left', function () {
-    PreviousPage();
-  })
+    const previousKey = db.get('previous_key')
+    const nextKey = db.get('next_key')
+    const bossKey = db.get('boss_key')
+    const exitKey = db.get('exit_key')
+    if (previousKey) {
+        globalShortcut.register(previousKey, function () {
+            PreviousPage();
+        })
+    }
 
-  globalShortcut.register('CommandOrControl+Right', function () {
-    NextPage();
-  })
+    if (nextKey) {
+        globalShortcut.register(nextKey, function () {
+            NextPage();
+        })
+    }
 
-  globalShortcut.register('CommandOrControl+Up', function () {
-    BossKey(2);
-  })
+    if (bossKey) {
+        globalShortcut.register(bossKey, function () {
+            BossKey(2);
+        })
+    }
 
-  globalShortcut.register('CommandOrControl+Down', function () {
-    Exit();
-  })
+    if (exitKey) {
+        globalShortcut.register(exitKey, function () {
+            Exit();
+        })
+    }
 }
 
 function createTray() {
-  const menubarLogo = process.platform === 'darwin' ? `${__static}/logo.png` : `${__static}/logo.png`
+    const menubarLogo = `${__static}/logo.png`
 
-  var menuList = [];
-  menuList.push(
-    {
-      label: '关于',
-      click() {
-        shell.openExternal('https://github.com/cteams/Thief-Book')
-      }
+    const menuList = [
+        {
+            label: '关于',
+            click() {
+                shell.openExternal('https://github.com/cteams/Thief-Book')
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: '设置',
+            click() {
+                createWindownSetting()
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            role: 'quit',
+            accelerator: 'CommandOrControl+Alt+X',
+            label: '退出'
+        },
+    ];
+
+    if (isMac) {
+        menuList.splice(1, 0, {
+            type: 'separator'
+        }, {
+            label: '任务栏版',
+            type: 'radio',
+            checked: db.get('curr_model') === '1',
+            click() {
+                db.set('curr_model', '1')
+
+                if (desktopWindow != null) {
+                    desktopWindow.close();
+                }
+
+                BossKey(1);
+            }
+        }, {
+            label: '桌面版',
+            type: 'radio',
+            checked: db.get('curr_model') === '2',
+            click() {
+                createWindownDesktop()
+
+                db.set('curr_model', '2')
+
+                setTimeout(() => {
+                    BossKey(1);
+                }, 1000);
+            }
+        })
     }
-  );
 
-  if (isMac) {
-    menuList.push(
-      {
-        type: "separator"
-      },
-      {
-        label: '任务栏版',
-        type: 'radio',
-        checked: db.get('curr_model') === '1',
-        click() {
-          db.set("curr_model", "1")
-
-          if (desktopWindow != null) {
-            desktopWindow.close();
-          }
-
-          BossKey(1);
-        }
-      },
-      {
-        label: '桌面版',
-        type: 'radio',
-        checked: db.get('curr_model') === '2',
-        click() {
-          // if (desktopWindow === null) {
-          createWindownDesktop()
-          // }
-
-          db.set("curr_model", "2")
-
-          setTimeout(() => {
-            BossKey(1);
-          }, 1000);
-        }
-      }
-    );
-  } else {
-  }
-
-  menuList.push(
-    {
-      type: "separator"
-    },
-    {
-      label: '上一页',
-      accelerator: 'CommandOrControl+Alt+,',
-      click() {
-        PreviousPage();
-      }
-    },
-    {
-      label: '下一页',
-      accelerator: 'CommandOrControl+Alt+.',
-      click() {
-        NextPage();
-      }
-    },
-    {
-      label: '老板键',
-      accelerator: 'CommandOrControl+Alt+M',
-      click() {
-        BossKey(2);
-      }
-    },
-    {
-      label: '设置',
-      click() {
-        createWindownSetting()
-      }
-    },
-    {
-      type: "separator"
-    },
-    {
-      role: 'quit',
-      accelerator: 'CommandOrControl+Alt+X',
-      label: '退出'
-    }
-  );
-
-
-  tray = new Tray(menubarLogo)
-  tray.setContextMenu(Menu.buildFromTemplate(menuList))
-  BossKey();
+    tray = new Tray(menubarLogo)
+    tray.setContextMenu(Menu.buildFromTemplate(menuList))
+    BossKey();
 }
 
 function createSetting() {
-  if (isMac) {
-    app.dock.hide();
-  } else {
-    //
-  }
+    if (isMac) {
+        app.dock.hide();
+    } else {
+        //
+    }
 }
 
 ipcMain.on('bg_text_color', function () {
-  if (desktopWindow != null) {
-    desktopWindow.webContents.send('bg_text_color', 'ping');
-  }
+    desktopWindow && desktopWindow.webContents.send('bg_text_color', 'ping');
 })
 
-const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
-  // Someone tried to run a second instance, we should focus our window.
-  if (desktopWindow) {
-    if (desktopWindow.isMinimized()) desktopWindow.restore()
-    desktopWindow.focus()
-  }
+const shouldQuit = app.makeSingleInstance(() => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (desktopWindow) {
+        if (desktopWindow.isMinimized()) desktopWindow.restore()
+        desktopWindow.focus()
+    }
 })
 
 if (shouldQuit) {
-  app.quit()
+    app.quit()
 }
 
 app.on('ready', init)
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+    if (!isMac) app.quit()
 })
 
 // app.on('activate', () => {

@@ -6,6 +6,24 @@ import fs from 'fs-extra'
 import LodashId from 'lodash-id'
 import { remote, app } from 'electron'
 
+let isMac = 'darwin' === process.platform;
+let isInit = false
+
+const dataMap = {
+    'current_page': 1, // 当前页码
+    'page_size': 20, // 每页文字数量
+    'is_english': false, // 是否是英文
+    'line_break': ' ', //
+    'current_file_path': '', // 文件路径
+    'bg_color': 'rgba(0, 0, 0, 0.5)', // 背景色
+    'txt_color': '#fff', // 文字色
+    'previous_key': 'CommandOrControl+1', // 上一页快捷键
+    'next_key': 'CommandOrControl+2', // 下一页快捷键
+    'boss_key': 'CommandOrControl+3', // boss快捷键
+    'exit_key': 'CommandOrControl+4', // 退出快捷键
+    'curr_model': isMac ? 1 : 2, // 当前的模式 - 桌面版本 || 任务栏版本
+}
+
 export default {
     data() {
         return {
@@ -36,49 +54,23 @@ export default {
         this.db_util = low(this.file_json)
         this.db_util._.mixin(LodashId)
 
-        if (!this.db_util.has('current_page').value()) {
-            this.db_util.set('current_page', 1).write()
-        }
-
-        if (!this.db_util.has('page_size').value()) {
-            this.db_util.set('page_size', 20).write()
-        }
-
-        if (!this.db_util.has('is_english').value()) {
-            this.db_util.set('is_english', false).write()
-        }
-
-        if (!this.db_util.has('line_break').value()) {
-            this.db_util.set('line_break', " ").write()
-        }
-
-        if (!this.db_util.has('current_file_path').value()) {
-            this.db_util.set('current_file_path', "").write()
-        }
-
-        if (!this.db_util.has('bg_color').value()) {
-            this.db_util.set('bg_color', "rgba(0, 0, 0, 0.5)").write()
-        }
-
-        if (!this.db_util.has('txt_color').value()) {
-            this.db_util.set('txt_color', "#fff").write()
-        }
-
-        let isMac = 'darwin' === process.platform;
-        if (!this.db_util.has('curr_model').value()) {
-            if (isMac) {
-                this.db_util.set('curr_model', "1").write()
-            } else {
-                this.db_util.set('curr_model', "2").write()
+        Object.entries(dataMap).forEach(([key, value]) => {
+            if (!this.db_util.has(key).value()) {
+                this.db_util.set(key, value).write()
             }
-        }
+        })
+        isInit = true
     },
     get(key) {
-        this.init();
+        if (!isInit) {
+            this.init();
+        }
         return this.db_util.get(key).value();
     },
     set(key, value) {
-        this.init();
+        if (!isInit) {
+            this.init();
+        }
         this.db_util.set(key, value).write();
     }
 };
