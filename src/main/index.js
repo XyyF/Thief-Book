@@ -278,6 +278,11 @@ ipcMain.on('bg_text_color', function () {
     desktopWindow && desktopWindow.webContents.send('bg_text_color', 'ping');
 })
 
+ipcMain.on('refresh_register_key', function () {
+    globalShortcut.unregisterAll();
+    createKey();
+})
+
 const shouldQuit = app.makeSingleInstance(() => {
     // Someone tried to run a second instance, we should focus our window.
     if (desktopWindow) {

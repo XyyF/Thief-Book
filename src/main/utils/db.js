@@ -62,15 +62,11 @@ export default {
         isInit = true
     },
     get(key) {
-        if (!isInit) {
-            this.init();
-        }
+        this.init();
         return this.db_util.get(key).value();
     },
     set(key, value) {
-        if (!isInit) {
-            this.init();
-        }
+        this.init();
         this.db_util.set(key, value).write();
     }
 };

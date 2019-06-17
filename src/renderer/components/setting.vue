@@ -139,7 +139,7 @@
 <script>
     import {ipcRenderer} from 'electron';
 
-    import helper from '../../main/utils/disabled-key'
+    import helper from '../../main/utils/keys-utils'
     import db from '../../main/utils/db';
     import dialog from '../utils/dialog';
 

@@ -5,8 +5,8 @@ export default {
     dealTime(s) {
         let seconds = s || 0;
         let day = (seconds / (3600 * 24)) | 0;
-        let hours = (seconds / 3600 % 24) | 0;
-        let minutes = (seconds / (3600 * 24) % 60) | 0;
+        let hours = (seconds / (60 * 60) % 24) | 0;
+        let minutes = (seconds / 60 % 60) | 0;
         let second = seconds % 60 | 0;
         (day < 10) && (day = '0' + day);
         (hours < 10) && (hours = '0' + hours);
