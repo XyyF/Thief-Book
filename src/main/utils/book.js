@@ -53,7 +53,7 @@ export default {
     },
     readFile() {
         if (this.filePath === "" || typeof (this.filePath) === "undefined") {
-            return "请选择TXT小说路径"
+            return "请选择TXT文件路径"
         }
 
         var data = fs.readFileSync(this.filePath, 'utf-8');

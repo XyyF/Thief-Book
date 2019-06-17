@@ -2,18 +2,12 @@
 import os from 'os'
 
 export default {
-    data() {
-        return {
-            db_util: null,
-            file_json: ""
-        };
-    },
-    dealTime(seconds) {
-        var seconds = seconds | 0;
-        var day = (seconds / (3600 * 24)) | 0;
-        var hours = ((seconds - day * 3600) / 3600) | 0;
-        var minutes = ((seconds - day * 3600 * 24 - hours * 3600) / 60) | 0;
-        var second = seconds % 60;
+    dealTime(s) {
+        let seconds = s || 0;
+        let day = (seconds / (3600 * 24)) | 0;
+        let hours = (seconds / 3600 % 24) | 0;
+        let minutes = (seconds / (3600 * 24) % 60) | 0;
+        let second = seconds % 60 | 0;
         (day < 10) && (day = '0' + day);
         (hours < 10) && (hours = '0' + hours);
         (minutes < 10) && (minutes = '0' + minutes);
@@ -21,7 +15,7 @@ export default {
         return [day, hours, minutes, second].join(':');
     },
     getTime() {
-        var uptime = os.uptime();
-        return "您的开机时长：" + this.dealTime(uptime);
-    }
+        const updateTime = os.uptime();
+        return "您的开机时长：" + this.dealTime(updateTime);
+    },
 };
