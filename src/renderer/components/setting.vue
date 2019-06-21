@@ -84,46 +84,54 @@
             </el-col>
 
             <!--快捷键设置-->
-            <el-form-item label="上一页">
-                <el-input
-                    style="width: 73.5%;"
-                    :value="form.previous_key"
-                    size="mini"
-                    placeholder="请设置上一页按键"
-                    @keydown.native="val => handleKeyDown(val, 'previous_key')"
-                    @keyup.native="handleKeyUp">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="下一页">
-                <el-input
-                    style="width: 73.5%;"
-                    :value="form.next_key"
-                    size="mini"
-                    placeholder="请设置下一页按键"
-                    @keydown.native="val => handleKeyDown(val, 'next_key')"
-                    @keyup.native="handleKeyUp">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="boss键">
-                <el-input
-                    style="width: 73.5%;"
-                    :value="form.boss_key"
-                    size="mini"
-                    placeholder="请设置boss键按键"
-                    @keydown.native="val => handleKeyDown(val, 'boss_key')"
-                    @keyup.native="handleKeyUp">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="退出键">
-                <el-input
-                    style="width: 73.5%;"
-                    :value="form.exit_key"
-                    size="mini"
-                    placeholder="请设置退出键按键"
-                    @keydown.native="val => handleKeyDown(val, 'exit_key')"
-                    @keyup.native="handleKeyUp">
-                </el-input>
-            </el-form-item>
+            <el-col :span="24">
+                <el-form-item label="上一页">
+                    <el-input
+                        style="width: 73.5%;"
+                        :value="form.previous_key"
+                        size="mini"
+                        placeholder="请设置上一页按键"
+                        @keydown.native="val => handleKeyDown(val, 'previous_key')"
+                        @keyup.native="handleKeyUp">
+                    </el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :span="24">
+                <el-form-item label="下一页">
+                    <el-input
+                        style="width: 73.5%;"
+                        :value="form.next_key"
+                        size="mini"
+                        placeholder="请设置下一页按键"
+                        @keydown.native="val => handleKeyDown(val, 'next_key')"
+                        @keyup.native="handleKeyUp">
+                    </el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :span="24">
+                <el-form-item label="boss键">
+                    <el-input
+                        style="width: 73.5%;"
+                        :value="form.boss_key"
+                        size="mini"
+                        placeholder="请设置boss键按键"
+                        @keydown.native="val => handleKeyDown(val, 'boss_key')"
+                        @keyup.native="handleKeyUp">
+                    </el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :span="24">
+                <el-form-item label="退出键">
+                    <el-input
+                        style="width: 73.5%;"
+                        :value="form.exit_key"
+                        size="mini"
+                        placeholder="请设置退出键按键"
+                        @keydown.native="val => handleKeyDown(val, 'exit_key')"
+                        @keyup.native="handleKeyUp">
+                    </el-input>
+                </el-form-item>
+            </el-col>
 
             <el-button
                 style="width: 100%;"
