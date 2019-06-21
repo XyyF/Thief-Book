@@ -103,7 +103,8 @@ function createWindownDesktop() {
 
     desktopWindow.loadURL(desktopURL)
 
-    desktopWindow.setAlwaysOnTop(true)
+    // 总是保留在最上层
+    // desktopWindow.setAlwaysOnTop(true)
 
     desktopWindow.setSkipTaskbar(true);
 
