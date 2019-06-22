@@ -284,6 +284,14 @@ ipcMain.on('refresh_register_key', function () {
     createKey();
 })
 
+ipcMain.on('previous_page', function () {
+    PreviousPage();
+})
+
+ipcMain.on('next_page', function () {
+    NextPage();
+})
+
 const shouldQuit = app.makeSingleInstance(() => {
     // Someone tried to run a second instance, we should focus our window.
     if (desktopWindow) {
