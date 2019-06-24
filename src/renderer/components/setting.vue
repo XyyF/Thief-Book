@@ -34,11 +34,12 @@
                 <el-form-item label="每页数量">
                     <el-input-number
                         v-if="form.curr_model === '1'"
+                        :value="form.page_size"
                         size="mini"
                         controls-position="right"
                         :min="5"
                         :max="28"
-                        v-model="form.page_size">
+                        @input="handleUpdatePageSize">
                     </el-input-number>
 
                     <el-input-number
@@ -261,6 +262,12 @@
             },
             assertKeyIsDisabled(key) {
                 return helper.disabledKeys.includes(key)
+            },
+            handleUpdatePageSize(val) {
+                const curPage = this.form.curr_page
+                const pageSize = this.form.page_size
+                this.form.curr_page = Math.floor(curPage * pageSize / val)
+                this.form.page_size = val
             },
         },
         created() {
